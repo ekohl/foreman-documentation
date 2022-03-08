@@ -2,6 +2,8 @@
 
 THIS IS A WORK IN PROGRESS. VISIT THE OFFICIAL [FOREMAN OR KATELLO DOCUMENTATION](https://theforeman.org/documentation.html) IF YOU ARE SEEKING HELP.
 
+LESS WORK IN PROGRESS
+
 This git repository contains PoC of improving Foreman documentation.
 
 ## Foreman Guides
