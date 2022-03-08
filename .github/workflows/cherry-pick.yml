@@ -3,9 +3,6 @@ name: Cherry pick to stable branches
 
 on:
   pull_request:
-    branches:
-      - master
-      - cherry-pick
     types:
       - closed
 
@@ -18,6 +15,7 @@ jobs:
     steps:
       - name: Parse PR message
         id: parse
+        if: ${{ github.event.pull_request.merged }}
         run: |
           awk '/^* \[x\] Foreman [0-9]+\.[0-9]+$/ { print $4 }' <<EOF | python3 -c 'import json, sys ; print(f"::set-output versions={json.dumps(sys.stdin.read().split())}")'
           ${{ github.event.pull_request.body }}
