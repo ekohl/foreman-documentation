@@ -54,6 +54,6 @@ jobs:
           EOF
       - name: Parse PR message - awk + python
         run: |
-          python3 -c 'import sys ; print(repr(sys.stdin.read()))'
+          python3 -c 'import sys ; print(repr(sys.stdin.read()))' <<EOF
           ${{ github.event.pull_request.body }}
           EOF
