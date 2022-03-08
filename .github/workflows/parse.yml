@@ -12,18 +12,28 @@ jobs:
           cat <<EOF
           ${{ github.event.pull_request.body }}
           EOF
-      - name: Parse PR message - awk
+      - name: Parse PR message - awk 0
         run: |
-          awk '/Foreman/ { print $4 }' <<EOF
+          awk '/Foreman [0-9]+\.[0-9]+/ { print $4 }' <<EOF
           ${{ github.event.pull_request.body }}
           EOF
-      - name: Parse PR message - gawk
+      - name: Parse PR message - awk 1
         run: |
-          gawk '/\* \[x\] Foreman [0-9]+\.[0-9]+$/ { print $4 }' <<EOF
+          awk '/Foreman [0-9]+\.[0-9]+$/ { print $4 }' <<EOF
           ${{ github.event.pull_request.body }}
           EOF
-      - name: Parse PR message - awk + python
+      - name: Parse PR message - awk 2
         run: |
-          awk '/\* \[x\] Foreman [0-9]+\.[0-9]+$/ { print $4 }' <<EOF | python3 -c 'import json, sys ; print(f"::set-output versions={json.dumps(sys.stdin.read().split())}")'
+          awk '/\[x\] Foreman/ { print $4 }' <<EOF
+          ${{ github.event.pull_request.body }}
+          EOF
+      - name: Parse PR message - awk 3
+        run: |
+          awk '/\* \[x\] Foreman/ { print $4 }' <<EOF
+          ${{ github.event.pull_request.body }}
+          EOF
+      - name: Parse PR message - awk 4
+        run: |
+          awk '/^\* \[x\] Foreman/ { print $4 }' <<EOF
           ${{ github.event.pull_request.body }}
           EOF
