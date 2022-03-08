@@ -52,3 +52,8 @@ jobs:
           awk '/^\* \[x\] Foreman [0-9]+\.[0-9]+/ { print $4 }' <<EOF | python3 -c 'import json, sys ; print(f"::set-output versions={json.dumps(sys.stdin.read().split())}")'
           ${{ github.event.pull_request.body }}
           EOF
+      - name: Parse PR message - awk + python
+        run: |
+          python3 -c 'import sys ; print(repr(sys.stdin.read()))'
+          ${{ github.event.pull_request.body }}
+          EOF
