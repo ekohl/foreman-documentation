@@ -14,3 +14,4 @@ guides/common/default.css
 /web/.byebug_history
 /web/output/
 /vendor
+package-lock.json
