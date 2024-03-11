@@ -8,7 +8,8 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Upgrading Foreman to 3.9",
@@ -30,7 +31,8 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Configuring Hosts Using Ansible",
@@ -48,7 +50,8 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Planning Guide",
@@ -56,19 +59,23 @@
         },
         {
           "title": "Quickstart Guide",
-          "path": "Quickstart"
+          "path": "Quickstart",
+          "tag": "quickstart"
         },
         {
           "title": "Installing Katello Server",
-          "path": "Installing_Server"
+          "path": "Installing_Server",
+          "tag": "installing-server"
         },
         {
           "title": "Installing Smart Proxy with Content",
-          "path": "Installing_Proxy"
+          "path": "Installing_Proxy",
+          "tag": "installing-proxy"
         },
         {
           "title": "Upgrading Katello to 4.11",
-          "path": "Upgrading_Project"
+          "path": "Upgrading_Project",
+          "tag": "upgrading"
         },
         {
           "title": "Tuning Performance",

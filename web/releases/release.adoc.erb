@@ -1,0 +1,28 @@
+== <%= item[:title] %>
+
+Use the top menu bar for navigation for all guides.
+
+=== Quickstart
+
+<% guides_links(item[:release], 'quickstart').each do |link, build, title| %>
+* link:<%= link %>[<%= title %>]
+<% end %>
+
+=== Installation
+
+<% guides_links(item[:release], 'installing-server').each do |link, build, title| %>
+* link:<%= link %>[<%= title %>]
+<% end %>
+<% guides_links(item[:release], 'installing-proxy').each do |link, build, title| %>
+* link:<%= link %>[<%= title %>]
+<% end %>
+
+=== Upgrading
+
+<% guides_links(item[:release], 'release-notes').each do |link, build, title| %>
+* link:<%= link %>[<%= title %>]
+<% end %>
+
+<% guides_links(item[:release], 'upgrading').each do |link, build, title| %>
+* link:<%= link %>[<%= title %>]
+<% end %>

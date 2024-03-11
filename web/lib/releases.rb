@@ -32,7 +32,7 @@ class ReleaseDataSource < ::Nanoc::DataSource
       }
 
       new_item(
-        File.read(File.join(content_dir_name, "#{version}.adoc")),
+        File.read(File.join(content_dir_name, 'release.adoc.erb')),
         context,
         "/#{version}/index.adoc.erb",
       )

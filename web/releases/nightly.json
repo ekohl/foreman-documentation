@@ -7,23 +7,28 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Quickstart Guide",
-          "path": "Quickstart"
+          "path": "Quickstart",
+          "tag": "quickstart"
         },
         {
           "title": "Installing Foreman Server",
-          "path": "Installing_Server"
+          "path": "Installing_Server",
+          "tag": "installing-server"
         },
         {
           "title": "Installing Smart Proxy",
-          "path": "Installing_Proxy"
+          "path": "Installing_Proxy",
+          "tag": "installing-proxy"
         },
         {
           "title": "Upgrading Foreman to Nightly",
-          "path": "Upgrading_Project"
+          "path": "Upgrading_Project",
+          "tag": "upgrading"
         },
         {
           "title": "Deploying Foreman on AWS",
@@ -73,15 +78,18 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Quickstart Guide",
-          "path": "Quickstart"
+          "path": "Quickstart",
+          "tag": "quickstart"
         },
         {
           "title": "Installing Foreman Server",
-          "path": "Installing_Server"
+          "path": "Installing_Server",
+          "tag": "installing-server"
         },
         {
           "title": "Deploying Foreman on AWS",
@@ -115,7 +123,8 @@
       "guides": [
         {
           "title": "Release Notes",
-          "path": "Release_Notes"
+          "path": "Release_Notes",
+          "tag": "release-notes"
         },
         {
           "title": "Planning Guide",
@@ -123,19 +132,23 @@
         },
         {
           "title": "Quickstart Guide",
-          "path": "Quickstart"
+          "path": "Quickstart",
+          "tag": "quickstart"
         },
         {
           "title": "Installing Katello Server",
-          "path": "Installing_Server"
+          "path": "Installing_Server",
+          "tag": "installing-server"
         },
         {
           "title": "Installing Smart Proxy with Content",
-          "path": "Installing_Proxy"
+          "path": "Installing_Proxy",
+          "tag": "installing-proxy"
         },
         {
           "title": "Upgrading Katello to Nightly",
-          "path": "Upgrading_Project"
+          "path": "Upgrading_Project",
+          "tag": "upgrading"
         },
         {
           "title": "Tuning Performance",
