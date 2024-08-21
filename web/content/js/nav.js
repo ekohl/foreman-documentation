@@ -29,8 +29,7 @@ function buildNavigation() {
           <a href="#" data-action="dropdown-toggle">${build.title}</a>
             <div class="dropdown-menu">`
             + build.guides.map(function(guide){
-              const url = `/${currentVer}/${guide.path}/${build.filename}`;
-              return `<div class="dropdown-div"><a class="dropdown-item" href="${url}">${guide.title}</a></div>`;
+              return `<div class="dropdown-div"><a class="dropdown-item" href="${guide.path}">${guide.title}</a></div>`;
             }).join("")
             +`</div>
         </li>`

@@ -1,0 +1,39 @@
+include::common/attributes.adoc[]
+
+== Foreman {ProjectVersion} and Katello {KatelloVersion}
+
+Use the top menu bar for navigation for all guides.
+
+[tabs]
+=====
+Foreman on Enterprise Linux::
++
+* link:/release/{ProjectVersion}/Quickstart/index-foreman-el.html[Quickstart guide]
+ifndef::HideDocumentOnStable[]
+* link:/release/{ProjectVersion}/Installing_Server/index-foreman-el.html[Installing Foreman {ProjectVersion}]
+* link:/release/{ProjectVersion}/Installing_Proxy/index-foreman-el.html[Installing Smart Proxy]
+endif::[]
+* link:/release/{ProjectVersion}/Release_Notes/index-foreman-el.html[Release notes]
+* link:/release/{ProjectVersion}/Upgrading_Project/index-foreman-el.html[Upgrading to Foreman {ProjectVersion}]
+--
+
+Foreman on Debian/Ubuntu::
++
+* link:/release/{ProjectVersion}/Quickstart/index-foreman-deb.html[Quickstart guide]
+ifndef::HideDocumentOnStable[]
+* link:/release/{ProjectVersion}/Installing_Server/index-foreman-deb.html[Installing Foreman {ProjectVersion}]
+endif::[]
+//* link:/release/{ProjectVersion}/Installing_Proxy/index-foreman-deb.html[Installing Smart Proxy]
+* link:/release/{ProjectVersion}/Release_Notes/index-foreman-deb.html[Release notes]
+//* link:/release/{ProjectVersion}/Upgrading_Project/index-foreman-deb.html[Upgrading to Foreman {ProjectVersion}]
+--
+
+Katello on Enterprise Linux::
++
+* link:/release/{ProjectVersion}/Quickstart/index-katello.html[Quickstart guide]
+* link:/release/{ProjectVersion}/Installing_Server/index-katello.html[Installing Katello {KatelloVersion}]
+* link:/release/{ProjectVersion}/Installing_Proxy/index-katello.html[Installing Smart Proxy with content]
+* link:/release/{ProjectVersion}/Release_Notes/index-katello.html[Release notes]
+* link:/release/{ProjectVersion}/Upgrading_Project/index-katello.html[Upgrading to Katello {KatelloVersion}]
+--
+=====

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Foreman documentation: <%= @item[:title] %></title>
+    <link rel="stylesheet" href="/css/default.css">
+    <meta name="generator" content="Nanoc <%= Nanoc::VERSION %>">
+  </head>
+  <body class="book toc2 toc-left">
+    <%= render "/nav.html.erb" %>
+    <div class="container narrow">
+      <div id="header">
+        <h1><%= @item[:title] %></h1>
+        <div id="toc" class="details toc2">
+          <div id="toctitle">Table of Contents</div>
+          <%= @item[:toc] %>
+        </div>
+      </div>
+      <%= yield %>
+
+      This is work-in-progress documentation site for <a href="https://www.theforeman.org">Foreman</a> open-source software and its plugins.
+      Official documentation <a href="https://theforeman.org/manuals/latest/index.html">is available here</a>.
+    </div>
+  </body>
+</html>

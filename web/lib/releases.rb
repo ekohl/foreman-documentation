@@ -1,42 +1,43 @@
-require 'bundler'
-require 'json'
+require 'pathname'
+
+BUILDS = {
+  'foreman-el' => 'Foreman on EL',
+  'foreman-deb' => 'Foreman on Debian/Ubuntu',
+  'katello' => 'Katello',
+}.freeze
 
 class ReleaseDataSource < ::Nanoc::DataSource
   identifier :releases
 
   def content_dir_name
-    'releases'
-  end
-
-  def versions
-    Dir[File.join(content_dir_name, '*.json')].map do |filename|
-      [File.basename(filename, '.json'), filename]
-    end.sort_by! do
-      |version, _| Gem::Version.new(version == 'nightly' ? '9999' : version)
-    end.reverse!
+    'guides'
   end
 
   def items
-    versions.map do |version, filename|
-      release = JSON.parse(File.read(filename))
-      release['foreman'] = version
-      release['state'] ||= 'unsupported'
-      release['title'] = release_menu_title(release)
+    require 'asciidoctor'
+    require 'asciidoctor-tabs'
 
-      context = {
-        title: "Foreman #{version} - Katello #{release['katello']}",
-        version: version,
-        state: release['state'],
-        katello: release['katello'],
-        release: release,
-      }
+    result = []
 
-      new_item(
-        File.read(File.join(content_dir_name, "#{version}.adoc")),
-        context,
-        "/#{version}/index.adoc.erb",
-      )
+    Pathname.new(content_dir_name).children.each do |child|
+      # Legacy path
+      legacy_child = child / 'guides'
+      child = legacy_child if legacy_child.exist?
+
+      index = child / 'index.adoc'
+      unless index.exist?
+        warn "Missing index.adoc; skipping #{child}"
+        next
+      end
+
+      result << index_item(index)
+
+      child.glob('doc-*/master.adoc').each do |path|
+        result += guide_items(path)
+      end
     end
+
+    result
   end
 
   def item_changes
@@ -44,6 +45,7 @@ class ReleaseDataSource < ::Nanoc::DataSource
   end
 
   def changes_for_dir(dir)
+    # TODO: document.catalog[:includes] has the included filenames
     require 'listen'
 
     Nanoc::Core::ChangesStream.new do |cl|
@@ -59,31 +61,93 @@ class ReleaseDataSource < ::Nanoc::DataSource
       sleep
     end
   end
-end
 
-def release_menu_title(release)
-  return 'nightly' if release['path'] == 'nightly'
+  private
 
-  "Foreman #{release['foreman']} - Katello #{release['katello']} (#{release['state']})"
+  def index_item(path)
+    attributes = {
+      'attribute-missing' => 'error',
+      'build' => 'foreman-el',
+    }
+
+    document = Asciidoctor.load_file(path.to_s, base_dir: path.dirname.to_s, attributes: attributes, safe: :safe)
+
+    version = document.attributes['projectversion']
+
+    new_item(
+      document.render,
+      {
+        title: document.title,
+        version: version,
+        katello: document.attributes['katelloversion'],
+        state: document.attributes.fetch('docstate', 'unsupported'),
+      },
+      "/#{version}/index.html",
+    )
+  end
+
+  def guide_items(path)
+    base_dir = path.dirname
+    guide = base_dir.basename.to_s.delete_prefix('doc-')
+
+    BUILDS.filter_map do |build, _title|
+      attributes = {
+        'attribute-missing' => 'error',
+        'build' => build,
+      }
+
+      document = Asciidoctor.load_file(path, base_dir: base_dir, doctype: 'book', backend: 'html5', attributes: attributes, safe: :safe)
+
+      next if document.catalog[:includes]['common/modules/snip_guide-not-ready']
+
+      version = document.attributes['projectversion']
+
+      context = {
+        title: document.title,
+        toc: document.converter.convert_outline(document),
+        build: build,
+        version: version,
+      }
+
+      new_item(
+        document.render,
+        context,
+        "/#{version}/#{guide}/index-#{build}.html",
+      )
+    end
+  end
 end
 
 def releases
-  @items.find_all('/release/*/index.adoc.erb')
+  @items.find_all('/release/*/index.html')
+end
+
+def nav_versions
+  releases.map do |release|
+    builds = BUILDS.map do |build, title|
+      guides = @items.find_all("/release/#{release[:version]}/*/index-#{build}.html").map do |guide|
+        {
+          title: guide[:title],
+          path: guide.path,
+        }
+      end
+
+      {
+        'title': title,
+        'guides': guides,
+      }
+    end
+
+    {
+      'foreman': release[:version],
+      'katello': release[:katello],
+      'state': release[:state],
+      'title': "#{release[:title]} (#{release[:state]})",
+      'builds': builds,
+    }
+  end
 end
 
 def releases_in_state(state)
   releases.filter { |release| release[:state] == state }
-end
-
-def guides_links(release, tag)
-  raise "no release passed" unless release
-  raise "release without builds" unless release[:builds]
-
-  release[:builds].filter_map do |build|
-    guide = build[:guides].find { |guide| guide[:tag] == tag }
-    next unless guide
-
-    link = "#{release[:path]}/#{guide[:path]}/#{build[:filename]}"
-    [link, build[:title], guide[:title]]
-  end
 end

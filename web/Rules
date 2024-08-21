@@ -47,3 +47,13 @@ compile "/**/*.adoc.erb" do
   layout "/default.html.erb"
   write ext: 'html'
 end
+
+compile "/**/index.html" do
+  layout "/default.html.erb"
+  write item.identifier
+end
+
+compile "/**/index-{foreman-{deb,el},katello}.html" do
+  layout "/guide.html.erb"
+  write item.identifier
+end

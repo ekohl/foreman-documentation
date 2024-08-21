@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "nanoc"
 gem "webrick"
 gem "asciidoctor"
+gem "asciidoctor-tabs"
 gem "sass"
 gem "w3c_validators"
 

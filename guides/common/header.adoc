@@ -1,8 +1,6 @@
 // Common document headers - avoid empty lines
 :imagesdir: images
 :numbered:
-:toc:
-:toc-placement: left
 ifndef::satellite[]
 :docinfodir: common
 endif::[]
