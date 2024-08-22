@@ -3,6 +3,10 @@ include::common/header.adoc[]
 :security-compliance:
 :context: security-compliance
 
+ifdef::foreman-deb[]
+:HideFromNavigation:
+endif::[]
+
 = {ManagingSecurityDocTitle}
 
 ifdef::foreman-deb[]

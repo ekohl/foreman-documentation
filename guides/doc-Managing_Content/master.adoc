@@ -3,6 +3,10 @@ include::common/header.adoc[]
 :context: content-management
 :content-management:
 
+ifdef::foreman-el,foreman-deb[]
+:HideFromNavigation:
+endif::[]
+
 = {ContentManagementDocTitle}
 
 ifdef::foreman-deb[]

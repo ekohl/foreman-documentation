@@ -99,6 +99,7 @@ class ReleaseDataSource < ::Nanoc::DataSource
       document = Asciidoctor.load_file(path, base_dir: base_dir, doctype: 'book', backend: 'html5', attributes: attributes, safe: :safe)
 
       next if document.catalog[:includes]['common/modules/snip_guide-not-ready']
+      next if document.attributes.include?('hidefromnavigation')
 
       version = document.attributes['projectversion']
 
