@@ -1,5 +1,7 @@
 # Foreman documentation
 
+TEST
+
 This git repository contains the following documentation:
 
 * Official documentation for the Katello project
